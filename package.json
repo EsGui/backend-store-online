@@ -1,4 +1,13 @@
 {
+  "name": "store_online",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha src/tests/**/*$NAME*.test.js --exit",
+    "dropbank": "npx sequelize db:drop && npx sequelize db:create && npx sequelize db:migrate",
+    "server": "nodemon src/app.js"
+  },
   "dependencies": {
     "chai": "^4.3.6",
     "cors": "^2.8.5",
