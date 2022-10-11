@@ -16,3 +16,7 @@ app.use(cors());
 
 app.use(userRouter);
 app.use(middlewareError);
+
+app.listen(3000, () => {
+  console.log(`Rodando na porta ${ 3000 }`);
+});
