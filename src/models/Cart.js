@@ -32,4 +32,4 @@ const UserModel = (sequelize, DataTypes) => {
   return Cart;
 };
   
-  module.exports = UserModel;
+module.exports = UserModel;
