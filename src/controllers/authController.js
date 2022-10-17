@@ -1,5 +1,5 @@
 const authService = require("../services/authServices");
-const { User } = require('../models');
+const { User, Product, Favorites, Cart, Sales } = require('../models');
 
 const authController = {
   validateToken: async (req, res) => {
