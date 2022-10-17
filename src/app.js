@@ -6,8 +6,9 @@ const cors = require('cors');
 
 // Rotas
 const userRouter = require('./routes/userRouter');
-const registerRouter = require('./routes/registerRouter')
-const authRouter = require('./routes/authRouter')
+const registerRouter = require('./routes/registerRouter');
+const authRouter = require('./routes/authRouter');
+const productsRouter = require('./routes/productsRouter')
 
 //middleware de erro
 const middlewareError = require('./middlewares/errors');
@@ -18,7 +19,8 @@ app.use(cors());
 
 app.use(userRouter);
 app.use(registerRouter);
-app.use(authRouter)
+app.use(authRouter);
+app.use(productsRouter);
 app.use(middlewareError);
 
 app.listen(3001, () => {

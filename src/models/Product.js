@@ -20,6 +20,12 @@ const ProductModel = (sequelize, DataTypes) => {
     }, {
       underscored: true,
     });
+
+
+  Product.associate = (db) => {
+    Product.belongsToMany(db.User, { as: 'user', foreignKey: 'id', through: 'products' });
+    Product.hasMany(db.CommentUser, { as: 'commentIdUser', foreignKey: 'productId' })
+  }
   
     return Product;
   };

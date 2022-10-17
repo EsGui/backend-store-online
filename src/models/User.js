@@ -31,6 +31,16 @@ const UserModel = (sequelize, DataTypes) => {
     }, {
       underscored: true,
     });
+
+    User.associate = (db) => {
+      User.hasMany(db.Product, { as: 'product', foreignKey: 'userId' });
+      User.belongsToMany(db.CommentUser, { as: 'comment', foreignKey: 'id', through: 'comment_user' });
+      User.hasMany(db.Favorites, { as: 'productFavorite', foreignKey: 'userId' });
+      User.hasMany(db.Cart, { as: 'cartProductsUserId', foreignKey: 'userId' });
+      /* User.hasMany(db.Cart, { as: 'cartProductsSellerId', foreignKey: 'sellerId' }); */
+      User.hasMany(db.Sales, { as: 'salesProductsSeller', foreignKey: 'sellerId' });
+      User.hasMany(db.Sales, { as: 'salesProductsBuyer', foreignKey: 'buyerId' });
+    }
   
     return User;
   };

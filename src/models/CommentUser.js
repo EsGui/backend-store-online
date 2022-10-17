@@ -14,6 +14,12 @@ const UserModel = (sequelize, DataTypes) => {
     }, {
       underscored: true,
     });
+
+    CommentUser.associate = (db) => {
+      CommentUser.belongsToMany(db.User, { as: 'user', foreignKey: 'id', through: 'CommentUser' });
+      /* CommentUser.belongsToMany(db.Product, { as: 'product', foreignKey: 'id', through: 'CommentUser' }); */
+      CommentUser.hasOne(db.Product, { as: 'product', foreignKey: 'id' });
+    }
   
     return CommentUser;
   };
