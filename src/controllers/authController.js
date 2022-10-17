@@ -9,7 +9,7 @@ const authController = {
     }
     const dataToken = authService.authToken(authorization);
     const userLogged = await User.findOne({ where: { email: dataToken.data.email } });
-    return res.status(200).json({ ...userLogged.dataValues, status: 200 });
+    return res.status(200).json({ ...userLogged.dataValues, status: 200, token: authorization });
   },
 };
 
