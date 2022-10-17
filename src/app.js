@@ -8,7 +8,8 @@ const cors = require('cors');
 const userRouter = require('./routes/userRouter');
 const registerRouter = require('./routes/registerRouter');
 const authRouter = require('./routes/authRouter');
-const productsRouter = require('./routes/productsRouter')
+const productsRouter = require('./routes/productsRouter');
+const cartRouter = require('./routes/cartRouter');
 
 //middleware de erro
 const middlewareError = require('./middlewares/errors');
@@ -21,6 +22,7 @@ app.use(userRouter);
 app.use(registerRouter);
 app.use(authRouter);
 app.use(productsRouter);
+app.use(cartRouter);
 app.use(middlewareError);
 
 app.listen(3001, () => {
