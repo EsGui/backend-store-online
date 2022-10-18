@@ -13,6 +13,7 @@ const UserModel = (sequelize, DataTypes) => {
       productId: DataTypes.INTEGER,
     }, {
       underscored: true,
+      tableName: 'comment_users'
     });
 
     CommentUser.associate = (db) => {

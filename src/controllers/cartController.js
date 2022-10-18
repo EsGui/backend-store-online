@@ -1,4 +1,4 @@
-const { Cart, User, Product } = require('../models')
+const { Cart, User, Product, Favorites, Sales } = require('../models')
 
 const cartController = {
   listCart: async (req, res) => {
@@ -16,12 +16,19 @@ const cartController = {
       sellerId,
     } = req.body;
 
-    const cartExists = await Cart.findOne({ where: { productId: Number(productId), userId: Number(userId) } });
+    const userLogged = await User.findOne({ where: { id: userId }, include: [
+      { model: Product, as: 'product' }, 
+      { model: Favorites, as: 'productFavorite' },
+      { model: Cart, as: 'cartProductsUserId' },
+      /* { model: Cart, as: 'cartProductsSellerId' }, */
+      { model: Sales, as: 'salesProductsSeller' },
+      { model: Sales, as: 'salesProductsBuyer' }
+    ] });
 
-    console.log('Produto encontrado ==>>', cartExists)
-
-    if (cartExists) {
-      return res.status(400).json({ message: 'O produto já está no carrinho!' })
+    for (let index = 0; index < userLogged.cartProductsUserId.length; index += 1) {
+      if (Number(userLogged.cartProductsUserId[index].productId) === Number(productId)) {
+        return res.status(200).json({ message: 'O Produto já está no carrinho' })
+      }
     }
     
     try {

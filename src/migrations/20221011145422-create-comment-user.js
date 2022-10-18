@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('comment_user', {
+    await queryInterface.createTable('comment_users', {
       id: {
         allowNull: false,
         autoIncrement: true,
